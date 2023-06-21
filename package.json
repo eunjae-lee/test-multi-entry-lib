@@ -4,9 +4,24 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp src/reactEntry.tsx dist/ && cp src/vueEntry.vue dist/",
     "preview": "vite preview"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/my-lib.js",
+      "require": "./dist/my-lib.umd.cjs"
+    },
+    "./react": {
+      "import": "./dist/reactEntry.tsx"
+    },
+    "./vue": {
+      "import": "./dist/vueEntry.vue"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
